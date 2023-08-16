@@ -1,10 +1,25 @@
-part of 'payload_bloc.dart';
+enum AppTheme { light, dark }
 
-sealed class PayloadState extends Equatable {
-  const PayloadState();
-  
+class PayloadState {
+  final AppTheme appTheme;
+
+  PayloadState({this.appTheme = AppTheme.light});
+
+  factory PayloadState.initial() {
+    return PayloadState();
+  }
+
   @override
-  List<Object> get props => [];
-}
+  String toString() => 'PayloadState(appTheme: $appTheme)';
 
-final class PayloadInitial extends PayloadState {}
+  PayloadState copyWith({
+    AppTheme? appTheme,
+  }) {
+    return PayloadState(
+      appTheme: appTheme ?? this.appTheme,
+    );
+  }
+
+  @override
+  List<Object> get props => [appTheme];
+}
