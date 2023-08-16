@@ -1,5 +1,7 @@
 import 'dart:math';
-
+import 'blocs/payload/payload_state.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bloc_payload/blocs/payload/payload_bloc.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,11 +14,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Event Payload',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(primarySwatch: Colors.deepPurple),
-        home: HomePage());
+    return BlocProvider<PayloadBloc>(
+      create: (context) => PayloadBloc(),
+      child: BlocBuilder<PayloadBloc, PayloadState>(
+        builder: (context, state) {
+          return MaterialApp(
+              title: 'Event Payload',
+              debugShowCheckedModeBanner: false,
+              theme: state.appTheme == AppTheme.light
+                  ? ThemeData.light()
+                  : ThemeData.dark(),
+              home: HomePage());
+        },
+      ),
+    );
   }
 }
 
