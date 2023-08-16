@@ -45,6 +45,7 @@ class HomePage extends StatelessWidget {
           onPressed: () {
             final randomInt = Random().nextInt(10);
             print('Random Int: $randomInt');
+            context.read<PayloadBloc>().add(ChangeThemeEvent(randomInt));
           },
           child: Text(
             'Change theme',

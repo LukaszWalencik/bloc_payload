@@ -12,7 +12,6 @@ class PayloadBloc extends Bloc<PayloadEvent, PayloadState> {
       } else {
         emit(state.copyWith(appTheme: AppTheme.dark));
       }
-      // TODO: implement event handler
     });
   }
 }

@@ -19,7 +19,4 @@ class PayloadState {
       appTheme: appTheme ?? this.appTheme,
     );
   }
-
-  @override
-  List<Object> get props => [appTheme];
 }
